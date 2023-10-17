@@ -11,7 +11,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-fit">
+                <div class="max-w-full">
                     <section>
                         <header>
                             <h2 class="text-lg font-medium text-gray-900">
@@ -61,7 +61,7 @@
                             </div>
 
                             <div class="mb-6" >
-                                <x-input-label for="version" :value="__('Plugin URL')" />
+                                <x-input-label for="version" :value="__('Plugin Version')" />
                                 <x-text-input id="version" name="version" type="text" class="mt-1 block w-full" :value="old('version')" required autofocus autocomplete="version" />
                                 <x-input-error class="mt-2" :messages="$errors->get('version')" />
                             </div>
@@ -92,4 +92,3 @@
 
 
 </x-app-layout>
-

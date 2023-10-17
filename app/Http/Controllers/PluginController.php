@@ -14,7 +14,7 @@ class PluginController extends Controller
     {
         $plugins = Plugin::all();
 
-       return view ('plugins.create', compact ('plugins'));
+       return view ('dashboard', compact ('plugins'));
     }
 
     /**
