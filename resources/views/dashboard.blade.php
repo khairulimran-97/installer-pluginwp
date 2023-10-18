@@ -47,6 +47,7 @@
                                     <th>Plugin URL Download</th>
                                     <th>Version</th>
                                     <th>Action</th>
+                                    <td></td>
                                 </tr>
                             </thead>
                             @foreach ($plugins as $plugin)
@@ -58,9 +59,10 @@
                                     <td>{{$plugin->url }}</td>
                                     <td>{{$plugin->version }}</td>
                                     <td>
-                                        <x-bladewind.button.circle size="small" icon="pencil" />
+                                        <x-bladewind.button.circle size="small" icon="pencil" onclick="window.location='{{ route('plugins.edit', $plugin) }}'"/>
                                         <x-bladewind.button.circle size="small" icon="trash" color="red" />
                                     </td>
+                                    <td><a href="{{route('plugins.edit', $plugin)}}">Edit</a></td>
                                 </tr>
                             @endforeach
                             <tfoot>
@@ -79,6 +81,8 @@
             </div>
         </div>
     </div>
+
+
 
 
 </x-app-layout>
