@@ -58,7 +58,7 @@
                                     <td>{{$plugin->url }}</td>
                                     <td>{{$plugin->version }}</td>
                                     <td>
-                                        <x-bladewind.button.circle size="small" icon="pencil" />
+                                        <x-bladewind.button.circle size="small" icon="pencil" onclick="window.location='{{ route('plugins.edit', $plugin) }}'"/>
                                         <x-bladewind.button.circle size="small" icon="trash" color="red" />
                                     </td>
                                 </tr>
@@ -79,6 +79,8 @@
             </div>
         </div>
     </div>
+
+
 
 
 </x-app-layout>
