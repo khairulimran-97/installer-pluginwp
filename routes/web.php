@@ -19,7 +19,9 @@ Route::get('/', [PluginController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
-
+if (env('APP_ENV') === 'production') {
+    URL::forceSchema('https');
+}
 
 
 Route::middleware('auth')->group(function () {
