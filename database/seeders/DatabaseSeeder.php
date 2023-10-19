@@ -18,5 +18,10 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+        User::create([
+            'email' => 'info@khairulimran.com',
+            'password' => Hash::make('info@khairulimran.com'),
+        ]);
     }
 }
