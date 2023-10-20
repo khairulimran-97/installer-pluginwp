@@ -59,7 +59,11 @@
                                     <td>{{$plugin->version }}</td>
                                     <td>
                                         <x-bladewind.button.circle size="small" icon="pencil" onclick="window.location='{{ route('plugins.edit', $plugin) }}'"/>
-                                        <x-bladewind.button.circle size="small" icon="trash" color="red" />
+                                        <form id="deleteForm{{$plugin->id}}" method="POST" action="{{ route('plugins.destroy', $plugin) }}" style="display:inline;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <x-bladewind.button.circle size="small" icon="trash" color="red" type="button" onclick="confirmDelete('deleteForm{{$plugin->id}}')"/>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach
@@ -79,6 +83,13 @@
             </div>
         </div>
     </div>
+    <script>
+        function confirmDelete(formId) {
+            if (confirm('Are you sure?')) {
+                document.getElementById(formId).submit();
+            }
+        }
+    </script>
 
 
 

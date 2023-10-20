@@ -82,6 +82,8 @@ class PluginController extends Controller
      */
     public function destroy(Plugin $plugin)
     {
-        //
+        //dd('Deleting plugin', $plugin->id);
+        $plugin->delete();
+        return redirect()->route('dashboard');
     }
 }

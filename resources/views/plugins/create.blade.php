@@ -40,11 +40,19 @@
                                 <x-input-error class="mt-2" :messages="$errors->get('folder')" />
                             </div>
 
-                            <div class="mb-6" >
+                            <div class="mb-6">
                                 <x-input-label for="type" :value="__('Plugin Type')" />
-                                <x-text-input id="type" name="type" type="text" class="mt-1 block w-full" :value="old('type')" required autofocus autocomplete="type" />
+
+                                <select id="type" name="type" class="appearance-none w-full border border-gray-300 px-3 py-2.5 rounded leading-tight focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 mt-1 sm:text-sm sm:leading-5">
+                                    <option value="General">General</option>
+                                    <option value="Woocommerce">Woocommerce</option>
+                                </select>
+
                                 <x-input-error class="mt-2" :messages="$errors->get('type')" />
                             </div>
+
+
+
                             </div>
 
                             <div class="w-full">
