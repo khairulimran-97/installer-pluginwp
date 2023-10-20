@@ -14,7 +14,7 @@ class PluginController extends Controller
     {
         $plugins = Plugin::all();
 
-       return view ('plugins.create', compact ('plugins'));
+       return view ('dashboard', compact ('plugins'));
     }
 
     /**
@@ -48,7 +48,7 @@ class PluginController extends Controller
      */
     public function show(Plugin $plugin)
     {
-        //
+
     }
 
     /**
@@ -56,7 +56,7 @@ class PluginController extends Controller
      */
     public function edit(Plugin $plugin)
     {
-        //
+        return view ('plugins.edit',compact('plugin'));
     }
 
     /**
@@ -64,7 +64,17 @@ class PluginController extends Controller
      */
     public function update(Request $request, Plugin $plugin)
     {
-        //
+        $plugin->update([
+            'plugin_name' => $request->input('plugin_name'),
+            'folder_plugin' => $request->input('folder'),
+            'plugin_type' => $request->input('type'),
+            'plugin_status' => $request->input('status'),
+            'url' => $request->input('url'),
+            'version' => $request->input('version'),
+        ]);
+
+
+        return redirect()->route('dashboard');
     }
 
     /**
@@ -72,6 +82,8 @@ class PluginController extends Controller
      */
     public function destroy(Plugin $plugin)
     {
-        //
+        //dd('Deleting plugin', $plugin->id);
+        $plugin->delete();
+        return redirect()->route('dashboard');
     }
 }

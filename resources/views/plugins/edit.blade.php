@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight flex justify-between items-center">
-            {{ __('Add New Plugin Details') }}
+            {{ __('Edit Plugin :name', ['name' => $plugin->plugin_name]) }}
             <span>
                 <x-bladewind.button color="black" icon="arrow-uturn-left" icon_right="true" size="tiny" onclick="window.location='{{ route('dashboard') }}'"> {{ __('View All') }} </x-bladewind.button>
             </span>
@@ -19,58 +19,51 @@
                             </h2>
 
                             <p class="mt-1 text-sm text-gray-600">
-                                {{ __("Fill the plugin details below.") }}
+                                {{ __("Update the plugin details below.") }}
                             </p>
                         </header>
 
-                        <form method="post" action="{{ route('plugins.store') }}" class="mt-6 space-y-6">
+                        <form method="post" action="{{ route('plugins.update', $plugin) }}" class="mt-6 space-y-6">
+                            @method('PUT')
                             @csrf
 
                             <div class="flex space-x-4">
                             <div class="w-full">
                             <div class="mb-6" >
                                 <x-input-label for="plugin_name" :value="__('Plugin Name')" />
-                                <x-text-input id="plugin_name" name="plugin_name" type="text" class="mt-1 block w-full" :value="old('plugin_name')" required autofocus autocomplete="plugin_name" />
+                                <x-text-input id="plugin_name" name="plugin_name" type="text" class="mt-1 block w-full" :value="$plugin->plugin_name" required autofocus autocomplete="plugin_name" />
                                 <x-input-error class="mt-2" :messages="$errors->get('plugin_name')" />
                             </div>
 
                             <div class="mb-6" >
                                 <x-input-label for="folder" :value="__('Folder Plugin Name')" />
-                                <x-text-input id="folder" name="folder" type="text" class="mt-1 block w-full" :value="old('folder')" required autofocus autocomplete="folder" />
+                                <x-text-input id="folder" name="folder" type="text" class="mt-1 block w-full" :value="$plugin->folder_plugin" required autofocus autocomplete="folder" />
                                 <x-input-error class="mt-2" :messages="$errors->get('folder')" />
                             </div>
 
-                            <div class="mb-6">
+                            <div class="mb-6" >
                                 <x-input-label for="type" :value="__('Plugin Type')" />
-
-                                <select id="type" name="type" class="appearance-none w-full border border-gray-300 px-3 py-2.5 rounded leading-tight focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 mt-1 sm:text-sm sm:leading-5">
-                                    <option value="General">General</option>
-                                    <option value="Woocommerce">Woocommerce</option>
-                                </select>
-
+                                <x-text-input id="type" name="type" type="text" class="mt-1 block w-full" :value="$plugin->plugin_type" required autofocus autocomplete="type" />
                                 <x-input-error class="mt-2" :messages="$errors->get('type')" />
                             </div>
-
-
-
                             </div>
 
                             <div class="w-full">
                             <div class="mb-6" >
                                 <x-input-label for="status" :value="__('Plugin Status')" />
-                                <x-text-input id="status" name="status" type="text" class="mt-1 block w-full" :value="old('status')" required autofocus autocomplete="status" />
+                                <x-text-input id="status" name="status" type="text" class="mt-1 block w-full" :value="$plugin->plugin_status" required autofocus autocomplete="status" />
                                 <x-input-error class="mt-2" :messages="$errors->get('status')" />
                             </div>
 
                             <div class="mb-6" >
                                 <x-input-label for="url" :value="__('Plugin URL')" />
-                                <x-text-input id="url" name="url" type="text" class="mt-1 block w-full" :value="old('url')" required autofocus autocomplete="url" />
+                                <x-text-input id="url" name="url" type="text" class="mt-1 block w-full" :value="$plugin->url" required autofocus autocomplete="url" />
                                 <x-input-error class="mt-2" :messages="$errors->get('url')" />
                             </div>
 
                             <div class="mb-6" >
                                 <x-input-label for="version" :value="__('Plugin Version')" />
-                                <x-text-input id="version" name="version" type="text" class="mt-1 block w-full" :value="old('version')" required autofocus autocomplete="version" />
+                                <x-text-input id="version" name="version" type="text" class="mt-1 block w-full" :value="$plugin->version" required autofocus autocomplete="version" />
                                 <x-input-error class="mt-2" :messages="$errors->get('version')" />
                             </div>
                             </div></div>
