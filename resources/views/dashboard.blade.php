@@ -12,12 +12,47 @@
     <style>
         select.form-control{
           display: inline;
-          width: 200px;
+          width: 140px;
           margin-left: 25px;
         }
 
         .p-3, .dataTables_empty{
-            color:white!important;
+            color:black!important;
+        }
+
+        #filterTable_wrapper > div > div.my-2.col-span-2.border.border-gray-200.rounded.min-w-full.bg-white.dark\:bg-gray-800.dark\:border-gray-700{
+            margin-top: 50px!important;
+            margin-bottom: 50px!important;
+        }
+
+        #filterTable_filter > label > input{
+            background-color: white!important;
+        }
+
+        #filterTable_length > label > select{
+            background-color: white!important;
+            width: 12%!important;
+        }
+
+        #filterTable > thead, #filterTable > tfoot > tr {
+            background-color:whitesmoke!important;}
+
+        #filterTable > tbody{
+            background-color: white!important;
+        }
+
+        .dark\:even\:bg-gray-900\/50:nth-child(even){
+            background-color: whitesmoke!important;
+        }
+
+        .delete svg{
+            color: white!important;
+            background-color: red!important;
+            border-radius: 100px!important;
+        }
+
+        #filterTable_previous, #filterTable_next{
+            background-color: whitesmoke!important;
         }
       </style>
 
@@ -25,24 +60,22 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <!-- Set up the datatable -->
-                    <div class="container mt-4">
+
                         <!-- Create the drop down filter -->
                         <div class="category-filter">
-                          <select id="categoryFilter" class="form-control">
+                          <select id="categoryFilter" class="form-control py-2 rounded-lg ml-2 px-3">
                             <option value="">Show All</option>
-                            <option value="Tokyo">Tokyo</option>
-                            <option value="Hip Hop">Hip Hop</option>
-                            <option value="Jazz">Jazz</option>
+                            <option value="General">General</option>
+                            <option value="Woocommerce">Woocommerce</option>
                           </select>
                         </div>
-                      </div>
+
                         <table class="table" id="filterTable">
                             <thead>
                                 <tr>
                                     <th>Plugin Name</th>
                                     <th>Folder Plugin Name</th>
-                                    <th>Plugin Type</th>
+                                    <th>Types</th>
                                     <th>Plugin Status</th>
                                     <th>Plugin URL Download</th>
                                     <th>Version</th>
@@ -62,13 +95,13 @@
                                         <form id="deleteForm{{$plugin->id}}" method="POST" action="{{ route('plugins.destroy', $plugin) }}" style="display:inline;">
                                             @csrf
                                             @method('DELETE')
-                                            <x-bladewind.button.circle size="small" icon="trash" color="red" type="button" onclick="confirmDelete('deleteForm{{$plugin->id}}')"/>
+                                            <x-bladewind.button.circle size="small" icon="trash" class="delete" color="red" type="button" onclick="confirmDelete('deleteForm{{$plugin->id}}')"/>
                                         </form>
                                     </td>
                                 </tr>
                             @endforeach
                             <tfoot>
-                                <tr>
+                                {{-- <tr>
                                     <th>Plugin Name</th>
                                     <th>Folder Plugin Name</th>
                                     <th>Plugin Type</th>
@@ -76,7 +109,7 @@
                                     <th>Plugin URL Download</th>
                                     <th>Version</th>
                                     <th>Action</th>
-                                </tr>
+                                </tr> --}}
                             </tfoot>
                         </table>
                 </div>
